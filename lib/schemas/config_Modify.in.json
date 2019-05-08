@@ -1,0 +1,133 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "description": "Configuration parameters",
+            "example": {
+                "channel": 13,
+                "compass": "static",
+                "gps": "external",
+                "locator_type": "a1",
+                "range_max_x": 50,
+                "range_max_y": 50,
+                "range_max_z": 50,
+                "range_min_x": 50,
+                "range_min_y": 50,
+                "static_lat": 63.422,
+                "static_lon": 10.424,
+                "static_orientation": 42
+            },
+            "properties": {
+                "channel": {
+                    "description": "Channel to use",
+                    "example": 13,
+                    "maximum": 18,
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "compass": {
+                    "description": "Compass provider setting",
+                    "enum": [
+                        "onboard",
+                        "static",
+                        "external"
+                    ],
+                    "example": "static",
+                    "type": "string"
+                },
+                "gps": {
+                    "description": "GPS provider setting",
+                    "enum": [
+                        "onboard",
+                        "static",
+                        "external"
+                    ],
+                    "example": "external",
+                    "type": "string"
+                },
+                "locator_type": {
+                    "description": "Locator type in use",
+                    "enum": [
+                        "d1",
+                        "a1",
+                        "s1"
+                    ],
+                    "example": "a1",
+                    "type": "string"
+                },
+                "range_max_x": {
+                    "description": "Max range (meters)",
+                    "example": 50,
+                    "maximum": 100,
+                    "minimum": 0,
+                    "type": "number"
+                },
+                "range_max_y": {
+                    "description": "Max range (meters)",
+                    "example": 50,
+                    "maximum": 100,
+                    "minimum": 0,
+                    "type": "number"
+                },
+                "range_max_z": {
+                    "description": "Max range (meters)",
+                    "example": 50,
+                    "maximum": 100,
+                    "minimum": 1,
+                    "type": "number"
+                },
+                "range_min_x": {
+                    "description": "Max range (meters)",
+                    "example": 50,
+                    "maximum": 0,
+                    "minimum": -100,
+                    "type": "number"
+                },
+                "range_min_y": {
+                    "description": "Max range (meters)",
+                    "example": 50,
+                    "maximum": 0,
+                    "minimum": -100,
+                    "type": "number"
+                },
+                "static_lat": {
+                    "description": "Latitude to use in static mode",
+                    "example": 63.422,
+                    "maximum": 90,
+                    "minimum": -90,
+                    "type": "number"
+                },
+                "static_lon": {
+                    "description": "Longitude to use in static mode",
+                    "example": 10.424,
+                    "maximum": 180,
+                    "minimum": -180,
+                    "type": "number"
+                },
+                "static_orientation": {
+                    "description": "Orientation/compass reading to use in static mode (degrees)",
+                    "example": 42,
+                    "maximum": 359,
+                    "minimum": 0,
+                    "type": "number"
+                }
+            },
+            "required": [
+                "channel",
+                "range_min_x",
+                "range_max_x",
+                "range_min_y",
+                "range_max_y",
+                "range_max_z",
+                "locator_type",
+                "gps",
+                "compass",
+                "static_lat",
+                "static_lon",
+                "static_orientation"
+            ],
+            "title": "ModifyConfigPayload",
+            "type": "object"
+        }
+    }
+}

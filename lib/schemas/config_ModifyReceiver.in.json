@@ -1,0 +1,52 @@
+{
+    "type": "object",
+    "properties": {
+        "ID": {
+            "required": true,
+            "type": "integer"
+        },
+        "requestBody": {
+            "description": "A receiver configuration",
+            "example": {
+                "id": 3146300361811729400,
+                "x": 0.17148309399971762,
+                "y": 0.36951858984372926,
+                "z": 0.8147274904139097
+            },
+            "properties": {
+                "id": {
+                    "description": "Unique receiver identifier",
+                    "example": 3146300361811729400,
+                    "format": "int64",
+                    "type": "integer"
+                },
+                "x": {
+                    "description": "Configured X position relative to master electronics (meter)",
+                    "example": 0.17148309399971762,
+                    "format": "double",
+                    "type": "number"
+                },
+                "y": {
+                    "description": "Configured Y position relative to master electronics (meter)",
+                    "example": 0.36951858984372926,
+                    "format": "double",
+                    "type": "number"
+                },
+                "z": {
+                    "description": "Configured Z position relative to master electronics (meter)",
+                    "example": 0.8147274904139097,
+                    "format": "double",
+                    "type": "number"
+                }
+            },
+            "required": [
+                "id",
+                "x",
+                "y",
+                "z"
+            ],
+            "title": "ModifyReceiverConfigPayload",
+            "type": "object"
+        }
+    }
+}

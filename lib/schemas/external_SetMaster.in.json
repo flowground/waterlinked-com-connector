@@ -1,0 +1,72 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "description": "Global master position from external source",
+            "example": {
+                "cog": 42,
+                "hdop": 1.9,
+                "lat": 63.422,
+                "lon": 10.424,
+                "numsats": 11,
+                "orientation": 42,
+                "sog": 0.5
+            },
+            "properties": {
+                "cog": {
+                    "description": "Course over ground (degrees). -1 means no data.",
+                    "example": 42,
+                    "maximum": 359,
+                    "minimum": -1,
+                    "type": "number"
+                },
+                "hdop": {
+                    "description": "Horizontal dilution of precision. -1 means no data.",
+                    "example": 1.9,
+                    "minimum": -1,
+                    "type": "number"
+                },
+                "lat": {
+                    "description": "Current Latitude",
+                    "example": 63.422,
+                    "maximum": 90,
+                    "minimum": -90,
+                    "type": "number"
+                },
+                "lon": {
+                    "description": "Current Longitude",
+                    "example": 10.424,
+                    "maximum": 180,
+                    "minimum": -180,
+                    "type": "number"
+                },
+                "numsats": {
+                    "description": "Number of satellites. -1 means no data.",
+                    "example": 11,
+                    "minimum": -1,
+                    "type": "number"
+                },
+                "orientation": {
+                    "description": "Current orientation/compass heading (degrees)",
+                    "example": 42,
+                    "maximum": 359,
+                    "minimum": 0,
+                    "type": "number"
+                },
+                "sog": {
+                    "description": "Speed over ground (km/h). -1 means no data.",
+                    "example": 0.5,
+                    "minimum": -1,
+                    "type": "number"
+                }
+            },
+            "required": [
+                "lat",
+                "lon",
+                "orientation"
+            ],
+            "title": "SetMasterExternalPayload",
+            "type": "object"
+        }
+    }
+}

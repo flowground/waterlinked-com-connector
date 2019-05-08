@@ -1,0 +1,72 @@
+{
+    "type": "object",
+    "properties": {
+        "ID": {
+            "required": true,
+            "type": "integer"
+        },
+        "requestBody": {
+            "description": "A list of all POI",
+            "example": {
+                "depth": 0.748659470979663,
+                "icon": "Accusamus iusto neque sequi fugit quis vero.",
+                "id": 7573279786407419000,
+                "lat": 0.9197150819910366,
+                "lng": 0.608968126951797,
+                "name": "Maiores quidem.",
+                "visible": true
+            },
+            "properties": {
+                "depth": {
+                    "description": "Depth of POI",
+                    "example": 0.748659470979663,
+                    "format": "double",
+                    "type": "number"
+                },
+                "icon": {
+                    "description": "Icon of POI",
+                    "example": "Accusamus iusto neque sequi fugit quis vero.",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "Unique POI id",
+                    "example": 7573279786407419000,
+                    "format": "int64",
+                    "type": "integer"
+                },
+                "lat": {
+                    "description": "Latitude of POI",
+                    "example": 0.9197150819910366,
+                    "format": "double",
+                    "type": "number"
+                },
+                "lng": {
+                    "description": "Longitude of POI",
+                    "example": 0.608968126951797,
+                    "format": "double",
+                    "type": "number"
+                },
+                "name": {
+                    "description": "Name of POI",
+                    "example": "Maiores quidem.",
+                    "type": "string"
+                },
+                "visible": {
+                    "description": "Visibility of POI",
+                    "example": true,
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "name",
+                "lat",
+                "lng",
+                "depth",
+                "icon",
+                "visible"
+            ],
+            "title": "UpdatePoiPayload",
+            "type": "object"
+        }
+    }
+}

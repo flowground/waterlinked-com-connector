@@ -1,0 +1,422 @@
+{
+    "title": "The Water Linked Underwater GPS",
+    "description": "API for the Water Linked Underwater GPS. For more details: http://www.waterlinked.com\n\nRecommended approach for connecting to a Underwater GPS via the API is:\n- If \"GET /api/\" times out, the Underwater GPS is not running (on this IP address)\n- If \"GET /api/\" responds with 200 OK check that the api version returrned (eg \"v1\") is supported by the client (eg: also supports \"v1\").\n- If the api version returned does not match what the client supports: give an error to the user and recommend upgrading. (Eg: response is \"v2\" while client only supports \"v1\")\n- If \"GET /api/\" responds with 301 Moved permanently. \"GET /api/v1/version\" to check if the kit has a version earlier than 1.5.\n- \"GET /api/v1/version\" will always respond with 200 OK on Underwater GPS earlier than 1.5 release.\n\nConfiguration API is is not considered stable and will potentially be changed",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/waterlinked.com/1.0.0/swagger.json",
+    "envVars": {},
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "http://demo.waterlinked.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            }
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "about_ApiVersion": {
+            "main": "./lib/actions/about_ApiVersion.js",
+            "title": "ApiVersion about",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/about_ApiVersion.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "about_Get": {
+            "main": "./lib/actions/about_Get.js",
+            "title": "Get about",
+            "description": "Get about information",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/about_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "about_Status": {
+            "main": "./lib/actions/about_Status.js",
+            "title": "Status about",
+            "description": "Get current IMU and GPS status",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/about_Status.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "about_Temperature": {
+            "main": "./lib/actions/about_Temperature.js",
+            "title": "Temperature about",
+            "description": "Get board temperature",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/about_Temperature.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "config_Get": {
+            "main": "./lib/actions/config_Get.js",
+            "title": "Get config",
+            "description": "Get generic configuration",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/config_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "config_Modify": {
+            "main": "./lib/actions/config_Modify.js",
+            "title": "Modify config",
+            "description": "Modify generic configuration",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/config_Modify.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "config_ListReceiver": {
+            "main": "./lib/actions/config_ListReceiver.js",
+            "title": "ListReceiver config",
+            "description": "(Re)Load current receiver settings and return them",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/config_ListReceiver.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "config_ShowReceiver": {
+            "main": "./lib/actions/config_ShowReceiver.js",
+            "title": "ShowReceiver config",
+            "description": "Get receiver configuration by id",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/config_ShowReceiver.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "config_ModifyReceiver": {
+            "main": "./lib/actions/config_ModifyReceiver.js",
+            "title": "ModifyReceiver config",
+            "description": "Modify receiver configuration, does not apply the change until generic modify is called. Calling list will discard changes",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/config_ModifyReceiver.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "external_SetDepth": {
+            "main": "./lib/actions/external_SetDepth.js",
+            "title": "SetDepth external",
+            "description": "Set depth from external source. If Locator A1 is used, this is required to get a position",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/external_SetDepth.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "external_SetMaster": {
+            "main": "./lib/actions/external_SetMaster.js",
+            "title": "SetMaster external",
+            "description": "Set current global position of master electronics from external source. Values are only used if GPS mode is set to use external GPS",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/external_SetMaster.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "external_GetOrientation": {
+            "main": "./lib/actions/external_GetOrientation.js",
+            "title": "GetOrientation external",
+            "description": "Get orientation of ROV/Locator set by external",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/external_GetOrientation.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "external_SetOrientation": {
+            "main": "./lib/actions/external_SetOrientation.js",
+            "title": "SetOrientation external",
+            "description": "Set orientation/compass heading of ROV/Locator. This is used only for visualization in GUI",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/external_SetOrientation.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "poi_Create": {
+            "main": "./lib/actions/poi_Create.js",
+            "title": "Create poi",
+            "description": "Create a new POI",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/poi_Create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "poi_List": {
+            "main": "./lib/actions/poi_List.js",
+            "title": "List poi",
+            "description": "List all points of interest",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/poi_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "poi_Delete": {
+            "main": "./lib/actions/poi_Delete.js",
+            "title": "Delete poi",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/poi_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "poi_Show": {
+            "main": "./lib/actions/poi_Show.js",
+            "title": "Show poi",
+            "description": "Get a POI",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/poi_Show.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "poi_Update": {
+            "main": "./lib/actions/poi_Update.js",
+            "title": "Update poi",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/poi_Update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "position_AcousticFiltered": {
+            "main": "./lib/actions/position_AcousticFiltered.js",
+            "title": "AcousticFiltered position",
+            "description": "Get current Kalman filtered acoustic position relative to master acoustics. Expected update frequency: 4 Hz",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/position_AcousticFiltered.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "position_AcousticRaw": {
+            "main": "./lib/actions/position_AcousticRaw.js",
+            "title": "AcousticRaw position",
+            "description": "Get current unfiltered acoustic position relative to master acoustics. Expected update frequency: 4 Hz",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/position_AcousticRaw.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "position_Get": {
+            "main": "./lib/actions/position_Get.js",
+            "title": "Get position",
+            "description": "Get current global position of locator. Locator position is calculated from the current acoustic position and the global position of the master electronics. Expected update frequency: 4 Hz",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/position_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "position_GetMaster": {
+            "main": "./lib/actions/position_GetMaster.js",
+            "title": "GetMaster position",
+            "description": "Get current global position of master electronics. Expected update frequency: 1 Hz",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/position_GetMaster.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "warnings_Get": {
+            "main": "./lib/actions/warnings_Get.js",
+            "title": "Get warnings",
+            "description": "Get current list of messages",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/warnings_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

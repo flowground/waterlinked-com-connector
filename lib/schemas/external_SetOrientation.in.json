@@ -1,0 +1,25 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "description": "Set current compass heading of ROV/locator",
+            "example": {
+                "orientation": 42
+            },
+            "properties": {
+                "orientation": {
+                    "description": "Current orientation/compass heading (degrees). -1 means no orientation set",
+                    "example": 42,
+                    "maximum": 359,
+                    "minimum": -1,
+                    "type": "number"
+                }
+            },
+            "required": [
+                "orientation"
+            ],
+            "title": "SetOrientationExternalPayload",
+            "type": "object"
+        }
+    }
+}
